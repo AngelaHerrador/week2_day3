@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 'arguments' (ES5) es un objeto iterable con todos los argumentos
+
+        function showActors() {
+            console.log(arguments)
+            // dotamos al objeto de los métodos de los arrays a través de una copia
+            const array = [...arguments]
+
+            array.forEach(elm => console.log('Un actor es', elm))
+        }
+
+        showActors('Chiquito de la Calzada', 'Ernesto Sevilla', 'Popino')
+
+
+
+
+        // REST parameters (ES6)
+        function showFoods(par1, par2, ...args) {
+
+            console.log('El primer parámetro es:', par1)
+            console.log('El segundo parámetro es:', par2)
+            args.forEach(elm => console.log('Los demás son', elm))
+        }
+
+        showFoods('pizza', 'caneloni', 'kfc', 'orange')
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>¿Cuál es mi contexto?</button>
+
+    <script>
+
+
+
+        // 1.- Global context: this === window
+        console.log('Global context:', this)
+        console.log(window === this)
+
+
+
+
+        // 2.- Function statement context: this === window
+        function whatever() {
+            console.log('Function context:', this)
+        }
+
+        whatever()
+
+
+
+        // 3.- Method context: el objeto al que pertenece
+        const person1 = {
+            weight: 80,
+            walk() {
+                console.log(this)           // object person
+                console.log(this.weight)    // 80
+            }
+        }
+
+        person1.walk()
+
+
+
+
+
+
+        // Gestión de contexto en métodos con funciones anidadas
+        const person = {
+            name: 'Ger',
+            weight: 80,
+            walk1() {
+                setInterval(function () {
+                    this.weight -= .1
+                    console.log('La persona ahora pesa', this.weight)
+                }, 1000)
+            },
+            walk2() {
+                const that = this
+                setInterval(function () {
+                    that.weight -= .1
+                    console.log('La persona ahora pesa', that.weight)
+                }, 1000)
+            },
+            walk3() {
+                setInterval(function () {
+                    this.weight -= .1
+                    console.log('La persona ahora pesa', this.weight)
+                }.bind(this), 1000)
+            },
+            walk4() {
+                setInterval(() => {
+                    this.weight -= .1
+                    console.log('La persona ahora pesa', this.weight)
+                }, 1000)
+            }
+        }
+
+
+        // NOP: el contexto de una función es window
+        // person.walk1()
+
+        // NOP: guarrada máxima
+        // person.walk2()
+
+        // OK: .bind() reorienta el contexto de la función
+        // person.walk3()
+
+        // OK: las arrow function no reorientan el contexto
+        person.walk4()
+
+
+
+
+
+
+        // BONUS: onclick es un método del objeto button, su contexto es el propio objeto
+
+        const button = document.querySelector('button')
+        button.onclick = function () { this.innerText = 'Yo soy mi propio contexto' }
+
+        console.log('Mira el objeto por consola:', { button })
+
+    </script>
+</body>
+
+</html>

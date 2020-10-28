@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        const drinks1 = ['agua', 'kas']
+        const drinks2 = Array('fanta', 'jagger')
+
+
+
+        // // Extensión de una instancia 
+
+        // drinks1.enumerateValues = function () {
+        //     this.forEach(elm => console.log('Este es un valor del array:', elm))
+        // }
+
+        // drinks1.enumerateValues()
+        // console.log('El array dispone de un método adicional:', drinks1)
+
+
+
+
+
+        // // Extensión del prototipo
+
+        // Array.prototype.showFirstValue = function () {
+        //     console.log('El primer valor del array es', this[0])
+        // }
+
+        // console.log('Ahora todos los arrays disponen del método asociado al prototype:', drinks1, drinks2)
+
+        // drinks1.showFirstValue()
+        // drinks2.showFirstValue()
+
+
+
+
+
+
+        // Manipulación del prototipo
+
+        Array.prototype.push = function (newItem) {
+            console.log('¿Pensabas que ibas a incluir', newItem, 'en el array? Ja!')
+            this.pop()
+        }
+
+        drinks1.push('Café fresquito')
+        console.log('Estado del array tras la operación:', drinks1)
+
+
+    </script>
+</body>
+
+</html>
