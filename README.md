@@ -76,3 +76,6 @@
         }        
         ````
 
+## Main points: hoisting
+
+Las variables `var` y las funciones `function statement` están disponibles previo a su declaración por el princpio de *hoisgting*, donde el script registra todos sus métodos (funciones) y propiedades (variables) para el objeto `window` previo a procesar el resto del programa.
